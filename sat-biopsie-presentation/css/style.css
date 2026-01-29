@@ -12,9 +12,9 @@
     --accent: #999999;
     
     /* Fonts */
-    --font-display: 'Playfair Display', serif; /* For titles */
-    --font-body: 'Inter', sans-serif; /* For body text */
-    --font-accent: 'Inter', sans-serif; /* For stats and numbers */
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-accent: 'Inter', sans-serif;
 }
 
 /* Global Reset */
@@ -193,14 +193,12 @@ body {
     transition: width 0.1s ease;
 }
 
-
 /* Section Styles - FIXED VISIBILITY */
 .section {
     position: relative;
     min-height: 100vh;
     padding: 8rem 0;
     overflow: hidden;
-    /* REMOVED display: none that was causing sections to hide */
     opacity: 1;
     visibility: visible;
 }
@@ -245,7 +243,12 @@ body {
 }
 
 .phases-section .section-background {
-    background-image: url('../images/backgrounds/stars.jpg');
+    background-image: url('../images/backgrounds/phases-animation.gif');
+    opacity: 0.5; /* 50% brightness for phases GIF */
+}
+
+.phases-section .section-background.active {
+    opacity: 0.5; /* 50% brightness for phases GIF */
 }
 
 .financials-section .section-background {
@@ -257,7 +260,12 @@ body {
 }
 
 .cta-section .section-background {
-    background-image: url('../images/backgrounds/galaxy.jpg');
+    background-image: url('../images/backgrounds/cta-animation.gif');
+    opacity: 0.5; /* 50% brightness for CTA GIF */
+}
+
+.cta-section .section-background.active {
+    opacity: 0.5; /* 50% brightness for CTA GIF */
 }
 
 /* Add overlay to all sections for readability */
@@ -269,9 +277,9 @@ body {
     width: 100%;
     height: 100%;
     background: linear-gradient(180deg, 
-        rgba(0, 0, 0, 0.85) 0%, 
-        rgba(0, 0, 0, 0.75) 50%, 
-        rgba(0, 0, 0, 0.9) 100%);
+        rgba(0, 0, 0, 0.5) 0%, 
+        rgba(0, 0, 0, 0.4) 50%, 
+        rgba(0, 0, 0, 0.55) 100%);
     z-index: 1;
     pointer-events: none;
 }
@@ -458,6 +466,119 @@ body {
     border-top: 2px solid rgba(153, 153, 153, 0.3);
 }
 
+/* Economics Section */
+.economics-section {
+    background: #000000;
+}
+
+.economics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.economics-card {
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.economics-card.highlight {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.economics-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.economics-card h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.economics-subtitle {
+    font-size: 1.1rem;
+    color: #cccccc;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.economics-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.economics-list li {
+    padding: 0.8rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: #999999;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    line-height: 1.6;
+}
+
+.economics-list li:last-child {
+    border-bottom: none;
+}
+
+.economics-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.economics-list li strong {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.economics-list li.savings {
+    color: #4ade80;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    border-top: 2px solid rgba(74, 222, 128, 0.3);
+}
+
+.economics-list li.savings strong {
+    color: #4ade80;
+}
+
+.scalability-box {
+    padding: 2.5rem 3rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.scalability-box p {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: #cccccc;
+    font-style: italic;
+    margin: 0;
+}
+
+.scalability-box strong {
+    color: #ffffff;
+    font-weight: 700;
+}
+
 /* Solution Section */
 .solution-hero {
     display: grid;
@@ -559,12 +680,15 @@ body {
 }
 
 .phase-card {
-    background: rgba(255, 255, 255, 0.03);
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
+    border-radius: 8px;
     padding: 2rem;
     transition: all 0.3s ease;
     position: relative;
+    min-height: 650px;
 }
 
 .phase-card:hover {
@@ -583,15 +707,51 @@ body {
     right: 1rem;
 }
 
+.phase-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
 
+.phase-content h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+    min-height: 2.2rem;
+    font-weight: 700;
+}
 
+.phase-tagline {
+    color: #999999;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    min-height: 1.5rem;
+    font-size: 0.95rem;
+}
 
+.phase-image {
+    height: 180px;
+    margin: 1.5rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.phase-points {
+    list-style: none;
+    margin: 1.5rem 0;
+    flex: 1;
+    font-size: 0.9rem;
+}
 
 .phase-points li {
-    padding: 0.8rem 0;
-    padding-left: 2rem;
+    padding: 0.6rem 0;
+    padding-left: 1.5rem;
     position: relative;
-    color: var(--gray);
+    color: #cccccc;
+    line-height: 1.5;
 }
 
 .phase-points li::before {
@@ -599,12 +759,49 @@ body {
     position: absolute;
     left: 0;
     color: #ffffff;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
+.phase-bottom-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: auto;
+    padding: 1.25rem 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    min-height: 90px;
+    max-height: 110px;
+}
 
+.box-label {
+    font-size: 0.7rem;
+    color: #666666;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
 
+.box-value {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+}
 
+.box-value-stat {
+    font-size: 0.95rem;
+    color: #cccccc;
+    font-weight: 400;
+    text-align: center;
+    line-height: 1.4;
+    font-family: 'Inter', sans-serif;
+}
 
 /* Financials Section */
 .financials-timeline {
@@ -986,89 +1183,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* Animations */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.section.is-visible > * {
-    animation: fadeInUp 0.8s ease forwards;
-}
-
-/* Responsive Design */
-@media (max-width: 1200px) {
-    .solution-hero {
-        grid-template-columns: 1fr;
-    }
-    
-    .phases-timeline {
-        grid-template-columns: 1fr;
-    }
-    
-    .financials-timeline {
-        grid-template-columns: 1fr;
-    }
-    
-    .sectors-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .nav-menu {
-        display: none;
-    }
-    
-    .hero-stats {
-        grid-template-columns: 1fr;
-    }
-    
-    .crisis-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .solution-features {
-        grid-template-columns: 1fr;
-    }
-    
-    .expansion-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .cta-info {
-        grid-template-columns: 1fr;
-    }
-    
-    .sectors-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .hero-cta {
-        flex-direction: column;
-    }
-    
-    .cta-buttons {
-        flex-direction: column;
-    }
-}
-/* Unified Bottom Box for All Phase Cards */
-
-
-
-
-
-
-
-
-
-/* Hero Section - FROM WORKING CODE */
+/* Hero Section - UPDATED WITH HOME.GIF */
 .hero {
     position: relative;
     min-height: 100vh;
@@ -1086,12 +1201,17 @@ body {
     width: 100%;
     height: 100%;
     z-index: 0;
-    opacity: 0.6;
+    background-image: url('../images/backgrounds/home.gif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1; /* Full brightness for home.gif - no dimming */
 }
 
 #earth-container {
     width: 100%;
     height: 100%;
+    display: none; /* Hide 3D earth when using GIF */
 }
 
 .hero-overlay {
@@ -1269,112 +1389,82 @@ body {
         transform: translateX(-50%) translateY(-10px);
     }
 }
-/* Fixed Phase Bottom Boxes - Compact and Aligned */
-.phase-bottom-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: auto;
-    padding: 1.25rem 1.5rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 8px;
-    min-height: 90px;
-    max-height: 110px;
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.box-label {
-    font-size: 0.7rem;
-    color: #666666;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
+.section.is-visible > * {
+    animation: fadeInUp 0.8s ease forwards;
 }
 
-.box-value {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #ffffff;
-    line-height: 1.2;
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .solution-hero {
+        grid-template-columns: 1fr;
+    }
+    
+    .phases-timeline {
+        grid-template-columns: 1fr;
+    }
+    
+    .financials-timeline {
+        grid-template-columns: 1fr;
+    }
+    
+    .sectors-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-.box-value-stat {
-    font-size: 0.95rem;
-    color: #cccccc;
-    font-weight: 400;
-    text-align: center;
-    line-height: 1.4;
-    font-family: 'Inter', sans-serif;
+@media (max-width: 1024px) {
+    .economics-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
-/* Ensure consistent phase card layout */
-.phase-card {
-    display: flex;
-    flex-direction: column;
-    background: rgba(0, 0, 0, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    padding: 2rem;
-    transition: all 0.3s ease;
-    position: relative;
-    min-height: 650px;
-}
-
-.phase-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.phase-content h3 {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.6rem;
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.5px;
-    min-height: 2.2rem;
-    font-weight: 700;
-}
-
-.phase-tagline {
-    color: #999999;
-    font-style: italic;
-    margin-bottom: 1.5rem;
-    min-height: 1.5rem;
-    font-size: 0.95rem;
-}
-
-.phase-image {
-    height: 180px;
-    margin: 1.5rem 0;
-    border-radius: 8px;
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.5);
-}
-
-.phase-points {
-    list-style: none;
-    margin: 1.5rem 0;
-    flex: 1;
-    font-size: 0.9rem;
-}
-
-.phase-points li {
-    padding: 0.6rem 0;
-    padding-left: 1.5rem;
-    position: relative;
-    color: #cccccc;
-    line-height: 1.5;
-}
-
-.phase-points li::before {
-    content: '▹';
-    position: absolute;
-    left: 0;
-    color: #ffffff;
-    font-size: 1.2rem;
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+    
+    .hero-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .crisis-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .solution-features {
+        grid-template-columns: 1fr;
+    }
+    
+    .expansion-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .cta-info {
+        grid-template-columns: 1fr;
+    }
+    
+    .sectors-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+    }
 }

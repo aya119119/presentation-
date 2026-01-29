@@ -494,7 +494,7 @@ function initStarfield() {
 
 // Initialize everything
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🚀 SAT-BIOPSIE Presentation Loading...');
+    console.log('🚀 Orbital AEGIS Presentation Loading...');
     
     initStarfield();
     initEarth();
@@ -509,7 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCustomCursor();
     initSectionBackgrounds();
     
-    console.log('✅ SAT-BIOPSIE Presentation Loaded Successfully');
+    console.log('✅ Orbital AEGIS Presentation Loaded Successfully');
     console.log('🎨 Using local images from /images folder');
     console.log('✨ Custom fonts: Playfair Display, Inter');
     console.log('⭐ Animated starfield active');
