@@ -1036,9 +1036,9 @@ body {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 15px;
-    padding: 2rem;
-    text-align: center;
+    overflow: hidden;
     transition: all 0.3s ease;
+    position: relative;
 }
 
 .sector-item:hover {
@@ -1047,9 +1047,69 @@ body {
     transform: translateY(-10px);
 }
 
+.sector-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.sector-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.sector-item:hover .sector-image img {
+    transform: scale(1.1);
+}
+
+.sector-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+}
+
+.sector-content {
+    padding: 1.5rem;
+    text-align: center;
+}
+
 .sector-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.sector-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0.9;
+}
+
+.sector-item:hover .sector-icon {
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.sector-item:hover .sector-icon img {
+    transform: scale(1.1);
+    opacity: 1;
 }
 
 .sector-item h4 {
@@ -1057,11 +1117,13 @@ body {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
     letter-spacing: 1px;
+    color: #ffffff;
 }
 
 .sector-item p {
     color: var(--gray);
     font-size: 0.9rem;
+    line-height: 1.5;
 }
 
 /* CTA Section */
